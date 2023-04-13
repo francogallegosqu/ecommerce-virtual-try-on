@@ -1,3 +1,5 @@
+.vite/deps
+
 # Logs
 logs
 *.log
