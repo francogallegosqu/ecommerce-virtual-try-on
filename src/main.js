@@ -6,6 +6,7 @@ import router from './router'
 
 import './assets/main.css'
 
+
 /* import the fontawesome core */
 import { library } from '@fortawesome/fontawesome-svg-core'
 
