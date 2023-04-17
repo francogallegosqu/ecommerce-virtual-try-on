@@ -22,7 +22,7 @@ defineProps({
       </div>
 
       <div class="px-2 py-1">
-        <!-- Product Title -->
+        <!-- Titulo -->
         <div class="text-sm md:text-base font-bold pr-2">{{ cloth.name }}</div>
         <!-- Precio -->
         <p class="pb-1 md:pb-2 text-xs md:text-sm text-gray-500">{{ `S/. ${cloth.price}` }}</p>

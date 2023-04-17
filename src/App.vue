@@ -2,10 +2,11 @@
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
 import ClothsView from './views/ClothsView.vue';
+import TryOnView from './views/TryOnView.vue';
 </script>
 
 <template>
-  <ClothsView></ClothsView>
+  <RouterView></RouterView>
 </template>
 
 <style scoped>
