@@ -3,6 +3,7 @@ import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
 import ClothsView from './views/ClothsView.vue';
 import HeaderGlobal from './components/global/HeaderGlobal.vue';
+import FooterGlobal from './components/global/FooterGlobal.vue';
 </script>
 
 
@@ -10,6 +11,7 @@ import HeaderGlobal from './components/global/HeaderGlobal.vue';
   <HeaderGlobal />
   <!-- <ClothsView></ClothsView> -->
   <RouterView />
+  <FooterGlobal />
 </template>
 
 <style scoped>
