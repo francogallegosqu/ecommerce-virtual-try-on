@@ -9,12 +9,39 @@
         <nav class="item-header navigation">
             <a class="" href="#">Inicio</a>
             <a href="#">Favoritos</a>
-            <router-link :to="{name:'login'}">Iniciar sesion</router-link>
-            <router-link :to="{name:'register'}">Registrarse</router-link>
+            <router-link v-if="!getLog" :to="{name:'login'}">Iniciar sesion</router-link>
+            <router-link v-if="!getLog" :to="{name:'register'}">Registrarse</router-link>
+            <a v-if="getLog" href="#">Hola {{ getUser?.user?.username }}</a>
+            <a v-if="getLog" href="#" @click="logoutUser()">Logout</a>
         </nav>
     </header>
 </template>
+<script>
+import { mapState, mapActions } from 'pinia'
+import { dataStore } from '../../stores/dataStore'
+import { logStore } from '../../stores/logStore'
+export default {
+    computed: {
+    ...mapState(dataStore, ['getUser']),
+    ...mapState(logStore, ['getLog']),
 
+  },
+  methods: {
+    ...mapActions(dataStore, ['logout']),
+    ...mapActions(logStore, ['updateLogin']),
+    logoutUser() {
+        this.logout()
+        this.updateLogin(false)
+    }
+  },
+  mounted(){
+    const data = JSON.parse(localStorage.getItem("data"))
+    if(data != null) {
+        this.updateLogin(true)
+    }
+  }
+}
+</script>
 <style scoped>
 .header {
     display: flex;

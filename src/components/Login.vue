@@ -13,46 +13,60 @@
         </div>
       <form class="form-insert" id="formId" enctype="multipart/form-data">
         <div class="form-content">
-            <label for="dni">Ingresa tu Usuario</label>
+            <label for="dni">Ingresa tu Correo</label>
           <input
-            type="text"
+            type="email"
             class="form-control"
             required
-            v-model="form.username"
+            v-model="form.identifier"
           />
         </div>
         <div class="form-content">
-              <label for="dni">Ingresa tu email</label>
+              <label for="dni">Ingresa tu Password</label>
             <input
-              type="email"
+              type="password"
               class="form-control"
               required
-              v-model="form.email"
+              v-model="form.password"
             />
           </div>
-        <div class="form-content">
-            <button>
-                Iniciar
-            </button>
-        </div>
       </form>
+      <div class="form-content">
+          <button @click="sendAuthenticated()">
+            Iniciar
+          </button>
+        </div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapActions } from 'pinia'
+import { loginStore } from '../stores/loginStore'
+import { logStore } from '../stores/logStore'
 export default {
   data() {
     return {
       form: {
-        dni: '',
-        username: '',
+        identifier: '',
         password: '',
-        email: '',
-        photo: ''
+      }
+    }
+  },
+  
+  methods: {
+    ...mapActions(loginStore, ['sendLogin']),
+    ...mapActions(logStore, ['updateLogin']),
+    async sendAuthenticated(){
+      const response = await this.sendLogin(this.form)
+      if(response){
+        alert('Usuario Logeado con éxito')
+        this.$router.push({ path: '/' })
+        this.updateLogin(true)
       }
     }
   }
+
 }
 </script>
 <style scoped>
