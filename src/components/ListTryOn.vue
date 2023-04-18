@@ -1,53 +1,94 @@
 <script setup>
+import ClothListCard from './ClothListCard.vue';
+
 defineProps({
   // ropa a probarse
-  cloths: {
+  clothes: {
     type: Array,
     required: false,
-    default: []
+    default: [
+        {
+          id: 1,
+          url_img: 'https://cdn.pixabay.com/photo/2010/12/13/10/05/berries-2277_640.jpg',
+          name: 'polo',
+          size: 'M',
+          price: 50,
+        },
+        {
+          id: 2,
+          url_img: 'https://cdn.pixabay.com/photo/2010/12/13/10/05/berries-2277_640.jpg',
+          name: 'pantalon',
+          size: 'M',
+          price: 65,
+        },
+        {
+          id: 3,
+          url_img: 'https://cdn.pixabay.com/photo/2010/12/13/10/05/berries-2277_640.jpg',
+          name: 'pantalon',
+          size: 'M',
+          price: 65,
+        },
+        {
+          id: 4,
+          url_img: 'https://cdn.pixabay.com/photo/2010/12/13/10/05/berries-2277_640.jpg',
+          name: 'pantalon',
+          size: 'M',
+          price: 65,
+        },
+        {
+          id: 5,
+          url_img: 'https://cdn.pixabay.com/photo/2010/12/13/10/05/berries-2277_640.jpg',
+          name: 'pantalon',
+          size: 'M',
+          price: 65,
+        },
+        {
+          id: 6,
+          url_img: 'https://cdn.pixabay.com/photo/2010/12/13/10/05/berries-2277_640.jpg',
+          name: 'pantalon',
+          size: 'M',
+          price: 65,
+        },
+        {
+          id: 7,
+          url_img: 'https://cdn.pixabay.com/photo/2010/12/13/10/05/berries-2277_640.jpg',
+          name: 'pantalon',
+          size: 'M',
+          price: 65,
+        },
+        {
+          id: 8,
+          url_img: 'https://cdn.pixabay.com/photo/2010/12/13/10/05/berries-2277_640.jpg',
+          name: 'pantalon',
+          size: 'M',
+          price: 65,
+        },
+        {
+          id: 9,
+          url_img: 'https://cdn.pixabay.com/photo/2010/12/13/10/05/berries-2277_640.jpg',
+          name: 'pantalon',
+          size: 'M',
+          price: 65,
+        },
+        {
+          id: 10,
+          url_img: 'https://cdn.pixabay.com/photo/2010/12/13/10/05/berries-2277_640.jpg',
+          name: 'pantalon',
+          size: 'M',
+          price: 65,
+        },
+      ]
   }
 })
 </script>
 
 <template>
-  <h2 class="font-bold mb-4">Productos</h2>
-  <ul>
-    <li class="mb-2 border-black border-2 rounded-md p-2">
-      <div class="flex flex-row gap-3">
-        <div class="w-2/5 bg-gray-100 items-center">
-          <img src="https://via.placeholder.com/150" alt="Producto" class="w-full">
-        </div>
-
-        <div class="border-l border-black h-auto"></div>
-
-        <div class="w-3/5">
-          <h2 class="font-bold text-lg mb-2">Producto 1</h2>
-          <p class="text-gray-700 text-sm mb-2">Talla: M</p>
-          <p class="text-gray-700 text-lg">$20.00</p>
-        </div>
-      </div>
+  <h2 class="font-bold mb-4">Prendas Favoritas</h2>
+  <ul class="flex flex-col gap-y-2">
+    <li v-for="cloth in clothes" :key="cloth.id" class="border-black border-2 rounded-md p-2">
+      <ClothListCard :cloth="cloth"></ClothListCard>
     </li>
-    <li class="mb-2 border-black border-2 rounded-md">
-      <a href="#" class="text-gray-800 hover:text-gray-600">Producto 2</a>
-    </li>
-    <li class="mb-2 border-black border-2 rounded-md">
-      <a href="#" class="text-gray-800 hover:text-gray-600">Producto 3</a>
-    </li>
-    <li class="mb-2 border-black border-2 rounded-md">
-      <a href="#" class="text-gray-800 hover:text-gray-600">Producto 4</a>
-    </li>
-  </ul>
-  <div class="flex flex-row items-center border rounded-lg overflow-hidden">
-    <div class="w-1/4 bg-gray-100 p-4">
-      <img src="https://via.placeholder.com/150" alt="Producto" class="w-full">
-    </div>
-    <div class="w-3/4 p-4">
-      <h2 class="font-bold text-lg mb-2">Producto 1</h2>
-      <p class="text-gray-700 text-sm mb-2">Talla: M</p>
-      <p class="text-gray-700 text-lg">$20.00</p>
-    </div>
-    <div class="border-l border-gray-300 h-16"></div>
-  </div>
+  </ul>  
 </template>
 
 <style scoped></style>
