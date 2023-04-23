@@ -14,23 +14,23 @@
       <form class="form-insert" id="formId" enctype="multipart/form-data">
         <div class="form-content">
           <label for="dni">Ingresa tu DNI</label>
-          <input type="text" class="form-control" v-model="form.dni" />
+          <input type="text" class="form-control p-2" v-model="form.dni" />
         </div>
         <div class="form-content">
           <label for="text">Ingresa tu Usuario</label>
-          <input type="text" class="form-control" required v-model="form.username" />
+          <input type="text" class="form-control p-2" required v-model="form.username" />
         </div>
         <div class="form-content">
           <label for="password">Ingresa tu Contraseña</label>
-          <input type="password" class="form-control" required v-model="form.password" />
+          <input type="password" class="form-control p-2" required v-model="form.password" />
         </div>
         <div class="form-content">
           <label for="email">Ingresa tu email</label>
-          <input type="email" class="form-control" required v-model="form.email" />
+          <input type="email" class="form-control p-2" required v-model="form.email" />
         </div>
         <div class="form-content">
           <label for="file">Ingresa tu Foto</label>
-          <input id="inputTag" type="file" class="form-control" />
+          <input id="inputTag" type="file" class="form-control p-2" />
         </div>
       </form>
       <div class="form-content">

@@ -1,8 +1,6 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
-import ClothsView from './views/ClothsView.vue';
-import TryOnView from './views/TryOnView.vue';
+import { RouterView } from 'vue-router'
+
 import HeaderGlobal from './components/global/HeaderGlobal.vue';
 import FooterGlobal from './components/global/FooterGlobal.vue';
 </script>
@@ -10,7 +8,6 @@ import FooterGlobal from './components/global/FooterGlobal.vue';
 
 <template>
   <HeaderGlobal />
-  <!-- <ClothsView></ClothsView> -->
   <RouterView />
   <FooterGlobal />
 </template>

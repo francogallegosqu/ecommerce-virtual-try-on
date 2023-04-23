@@ -7,8 +7,8 @@
             </div>
         </div>
         <nav class="item-header navigation">
-            <a class="" href="#">Inicio</a>
-            <a href="#">Favoritos</a>
+            <router-link :to="{name:'Cloths'}">Inicio</router-link>
+            <router-link :to="{name:'TryOn'}">Favoritos</router-link>
             <router-link v-if="!getLog" :to="{name:'login'}">Iniciar sesion</router-link>
             <router-link v-if="!getLog" :to="{name:'register'}">Registrarse</router-link>
             <a v-if="getLog" href="#">Hola {{ getUser?.user?.username }}</a>
@@ -17,6 +17,7 @@
     </header>
 </template>
 <script>
+import { RouterLink } from 'vue-router'
 import { mapState, mapActions } from 'pinia'
 import { dataStore } from '../../stores/dataStore'
 import { logStore } from '../../stores/logStore'
