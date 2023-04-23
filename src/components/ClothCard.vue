@@ -1,15 +1,18 @@
 <script setup>
+import { baseURL } from '../api';
+
 defineProps({
   cloth: {
     type: Object,
     required: true
   }
 })
+
 </script>
 
 <template>
   <div
-    class="relative pl-1 flex justify-center rounded-xl hover:scale-[1.01] duration-500 transform transition cursor-pointer">
+    class="relative pl-1 flex-1 justify-center rounded-xl hover:scale-[1.01] duration-500 transform transition cursor-pointer">
     <div class="pb-2 bg-white rounded-xl shadow-xl z-10">
       <!-- Boton "Favoritos" -->
       <a
@@ -17,13 +20,13 @@ defineProps({
         <Fai icon="fa-regular fa-heart" class="fa-xl pt-1"/>
       </a>
       
-      <div class="relative">
-        <img :src="cloth.url_img" class="max-h-60 object-cover rounded-t-xl" alt="">
+      <div class="relative px-2 flex justify-center">
+        <img :src="`${baseURL}${cloth.img.url}`" class="object-cover w-full h-full rounded-t-xl" alt="">
       </div>
 
       <div class="px-2 py-1">
         <!-- Titulo -->
-        <div class="text-sm md:text-base font-bold pr-2">{{ cloth.name }}</div>
+        <div class="text-sm md:text-base font-bold pr-2">{{ cloth.cloth_name }}</div>
         <!-- Precio -->
         <p class="pb-1 md:pb-2 text-xs md:text-sm text-gray-500">{{ `S/. ${cloth.price}` }}</p>
         <!-- Boton probarse -->
