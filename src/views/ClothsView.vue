@@ -1,19 +1,25 @@
 <script>
 import { mapState } from 'pinia';
 import ClothCard from '../components/ClothCard.vue';
+import { dataStore } from '../stores/dataStore'
 import { clothStore } from '../stores/clothStore';
+import { useFavClothStore } from '../stores/favClothStore';
 
 export default {
   data() {
     return {
-      clothStore: clothStore()
+      clothStore: clothStore(),
+      favClothStore: useFavClothStore(),
     }
   },
   computed: {
     ...mapState(clothStore, ['getClothes']),
+    ...mapState(dataStore, ['getUser']),
+    ...mapState(useFavClothStore, ['getfavClothes']),
   },
   async mounted() {
     await this.clothStore.listClothes();
+    await this.favClothStore.listFavCloths(this.getUser);
   },
   components: {
     ClothCard

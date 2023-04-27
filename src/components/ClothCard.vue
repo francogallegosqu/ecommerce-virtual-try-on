@@ -1,16 +1,36 @@
 <script>
+import { mapState } from 'pinia';
 import { baseURL } from '../api';
+import { logStore } from '../stores/logStore';
+import { dataStore } from '../stores/dataStore'
+import { useFavClothStore } from '../stores/favClothStore';
 export default {
+  data() {
+    return {
+      favClothStore: useFavClothStore()
+    }
+  },
   props: {
     cloth: {
       type: Object,
       required: true
     }  
   },
+  computed: {
+    ...mapState(dataStore, ['getUser']),
+    ...mapState(logStore, ['getLog']),
+  },
   methods: {
     getUrlImg() {
       console.log(`${baseURL}${this.cloth.img.url}`);
       return `${baseURL}${this.cloth.img.url}`;
+    },
+    async addFavCloth() {
+      if (this.getLog) {
+        await this.favClothStore.addFavCloth(this.getUser, this.cloth.id);
+      } else {
+        this.$router.push({ path: '/login' })
+      }
     }
   }
 }
@@ -22,7 +42,9 @@ export default {
     <div class="pb-2 bg-white rounded-xl shadow-xl z-10">
       <!-- Boton "Favoritos" -->
       <a
-        class="absolute top-0 right-0 mt-3 mr-1 z-30 hover:text-gray-100 w-8 h-8 bg-white text-black rounded-full text-center">
+        class="absolute top-0 right-0 mt-3 mr-1 z-30 hover:text-gray-100 hover:bg-stone-800 w-8 h-8 bg-white text-black rounded-full text-center"
+        @click="addFavCloth()"      
+        >
         <Fai icon="fa-regular fa-heart" class="fa-xl pt-1"/>
       </a>
       
