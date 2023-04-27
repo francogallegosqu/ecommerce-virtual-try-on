@@ -60,7 +60,6 @@ export const useFavClothStore = defineStore('favClothStore', {
       try {
         console.log(this.favCloths, cloth_id);
         const isFav = this.favCloths.find(cloth => cloth.id === id);
-        console.log(isFav === undefined);
       } catch (error) {
         return error
       }
