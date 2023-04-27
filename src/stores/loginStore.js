@@ -18,6 +18,9 @@ export const loginStore = defineStore('loginStore', {
             'Content-Type': 'multipart/form-data; charset=utf-8',
           },
         })
+        
+        console.log(responseData);
+
         localStorage.setItem("data", JSON.stringify(responseData.data));
         if (responseData) return responseData.status == '200'
       } catch (error) {

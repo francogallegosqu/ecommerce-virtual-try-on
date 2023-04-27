@@ -1,13 +1,19 @@
-<script setup>
+<script>
 import { baseURL } from '../api';
-
-defineProps({
-  cloth: {
-    type: Object,
-    required: true
+export default {
+  props: {
+    cloth: {
+      type: Object,
+      required: true
+    }  
+  },
+  methods: {
+    getUrlImg() {
+      console.log(`${baseURL}${this.cloth.img.url}`);
+      return `${baseURL}${this.cloth.img.url}`;
+    }
   }
-})
-
+}
 </script>
 
 <template>
@@ -21,7 +27,7 @@ defineProps({
       </a>
       
       <div class="relative px-2 flex justify-center">
-        <img :src="`${baseURL}${cloth.img.url}`" class="object-cover w-full h-full rounded-t-xl" alt="">
+        <img :src="getUrlImg()" class="object-cover w-full h-full rounded-t-xl" alt="">
       </div>
 
       <div class="px-2 py-1">
