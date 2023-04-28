@@ -17,14 +17,13 @@
     </header>
 </template>
 <script>
-import { RouterLink } from 'vue-router'
 import { mapState, mapActions } from 'pinia'
 import { dataStore } from '../../stores/dataStore'
 import { logStore } from '../../stores/logStore'
 export default {
     computed: {
-    ...mapState(dataStore, ['getUser']),
     ...mapState(logStore, ['getLog']),
+    ...mapState(dataStore, ['getUser']),
 
   },
   methods: {

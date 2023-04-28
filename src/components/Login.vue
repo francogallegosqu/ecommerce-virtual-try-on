@@ -44,6 +44,7 @@
 import { mapActions } from 'pinia'
 import { loginStore } from '../stores/loginStore'
 import { logStore } from '../stores/logStore'
+import { dataStore } from '../stores/dataStore'
 export default {
   data() {
     return {
@@ -57,11 +58,13 @@ export default {
   methods: {
     ...mapActions(loginStore, ['sendLogin']),
     ...mapActions(logStore, ['updateLogin']),
+    ...mapActions(dataStore, ['updateData']),
     async sendAuthenticated(){
       const response = await this.sendLogin(this.form)
       if(response){
         alert('Usuario Logeado con éxito')
         this.$router.push({ path: '/' })
+        this.updateData()
         this.updateLogin(true)
       }
     }

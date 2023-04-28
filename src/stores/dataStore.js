@@ -5,6 +5,9 @@ export const dataStore = defineStore('dataStore', {
     getUser: (state) => state.data,
   },
   actions: {
+    updateData(){
+      this.data = JSON.parse(localStorage.getItem("data"))
+    },
     logout() {
       console.log('remove')
         localStorage.removeItem("data");
