@@ -1,16 +1,36 @@
 <script>
+import { mapState } from 'pinia';
 import { baseURL } from '../api';
+import { logStore } from '../stores/logStore';
+import { dataStore } from '../stores/dataStore'
+import { useFavClothStore } from '../stores/favClothStore';
 export default {
+  data() {
+    return {
+      favClothStore: useFavClothStore()
+    }
+  },
   props: {
     cloth: {
       type: Object,
       required: true
     }  
   },
+  computed: {
+    ...mapState(dataStore, ['getUser']),
+    ...mapState(logStore, ['getLog']),
+  },
   methods: {
     getUrlImg() {
       console.log(`${baseURL}${this.cloth.img.url}`);
       return `${baseURL}${this.cloth.img.url}`;
+    },
+    async removeFavCloth() {
+      if (this.getLog) {
+        await this.favClothStore.removeFavCloth(this.getUser, this.cloth.id);
+      } else {
+        this.$router.push({ path: '/login' })
+      }
     }
   }
 }
@@ -32,7 +52,8 @@ export default {
         <button class="w-3/4 bg-[#FEE7D6] hover:bg-white text-sm md:text-base border hover:border-1 hover:border-[#FEE7D6] rounded-xl p-1 text-black"
         href="/tryon">Probarse
       </button>
-      <button class="w-1/4 bg-red-400 hover:bg-white text-sm md:text-base border hover:border-1 hover:border-red-400 rounded-xl text-black">
+      <button class="w-1/4 bg-red-400 hover:bg-white text-sm md:text-base border hover:border-1 hover:border-red-400 rounded-xl text-black"
+      @click="removeFavCloth()">
         <Fai icon="fa-solid fa-trash-can" />
       </button>
       </div>

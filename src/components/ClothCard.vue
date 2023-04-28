@@ -31,6 +31,10 @@ export default {
       } else {
         this.$router.push({ path: '/login' })
       }
+    },
+    async goToTryOn() {
+      await this.addFavCloth()
+      this.$router.push({ path: '/tryon' })
     }
   }
 }
@@ -59,7 +63,7 @@ export default {
         <p class="pb-1 md:pb-2 text-xs md:text-sm text-gray-500">{{ `S/. ${cloth.price}` }}</p>
         <!-- Boton probarse -->
         <a class="inset-x-0 bottom-0 flex justify-center bg-[#FEE7D6] hover:bg-white text-sm md:text-base border hover:border-2 hover:border-[#FEE7D6] rounded-xl px-5 p-1 text-black"
-          href="/tryon">Ir al Probador</a>
+          @click="goToTryOn()">Ir al Probador</a>
       </div>
     </div>
   </div>
