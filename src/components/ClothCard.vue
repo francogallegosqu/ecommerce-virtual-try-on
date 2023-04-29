@@ -14,7 +14,14 @@ export default {
     cloth: {
       type: Object,
       required: true
-    }  
+    },
+    filter : {
+      type: Boolean,
+      default: false
+    },
+    id: {
+      type: [Number, String]
+    }
   },
   computed: {
     ...mapState(dataStore, ['getUser']),
@@ -23,11 +30,11 @@ export default {
   methods: {
     getUrlImg() {
       console.log(`${baseURL}${this.cloth.img.url}`);
-      return `${baseURL}${this.cloth.img.url}`;
+      return this.filter == true ? `${baseURL}${this.cloth.img.data.attributes.url}` :`${baseURL}${this.cloth.img.url}`;
     },
     async addFavCloth() {
       if (this.getLog) {
-        await this.favClothStore.addFavCloth(this.getUser, this.cloth.id);
+        await this.favClothStore.addFavCloth(this.getUser, this.filter == this.id? '' : this.cloth.id);
       } else {
         this.$router.push({ path: '/login' })
       }

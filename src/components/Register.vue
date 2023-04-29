@@ -25,6 +25,14 @@
           <input type="password" class="form-control p-2" required v-model="form.password" />
         </div>
         <div class="form-content">
+          <select id="countries" class="form-control" required v-model="form.select">
+          <option selected >Elige tu talla</option>
+          <option value="S">S</option>
+          <option value="M">M</option>
+          <option value="L">L</option>
+        </select>
+        </div>
+        <div class="form-content">
           <label for="email">Ingresa tu email</label>
           <input type="email" class="form-control p-2" required v-model="form.email" />
         </div>
@@ -50,6 +58,7 @@ export default {
     return {
       form: {
         dni: '',
+        select:'',
         username: '',
         password: '',
         email: '',
@@ -63,10 +72,15 @@ export default {
   methods: {
     ...mapActions(userStore, ['sendUser']),
     async sendUserSave(){
-      const response = await this.sendUser(this.form)
-      if(response){
-        alert('Usuario Registrado con éxito')
-        this.$router.push({ name: 'login' })
+      try{
+        console.log(this.form)
+        const response = await this.sendUser(this.form)
+        if(response){
+          alert('Usuario Registrado con éxito')
+          this.$router.push({ name: 'login' })
+        }
+      }catch(error){ 
+        alert('Usuario ya existe o error')
       }
     }
   },
@@ -133,7 +147,7 @@ export default {
   padding-inline: 10px;
 }
 
-input {
+input, select {
   background: rgba(255, 237, 201, 0.5);
   border: 2px solid #7B552F;
   border-radius: 10px;

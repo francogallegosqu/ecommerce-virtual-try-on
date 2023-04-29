@@ -4,7 +4,7 @@ export const userStore = defineStore('user', {
   actions: {
     async sendUser(params) {
       try {
-        const { username, password, dni, file, email } = params
+        const { username, password, dni, file, email, select } = params
         console.log({ username, password, dni, file, email })
         const formData = new FormData()
         const formFile = new FormData()
@@ -15,6 +15,7 @@ export const userStore = defineStore('user', {
           },
         })
         formData.append('username', username)
+        formData.append('size', select)
         formData.append('password', password)
         formData.append('email', email)
         formData.append('dni', dni)
@@ -27,7 +28,8 @@ export const userStore = defineStore('user', {
         console.log(responseData, 'status', responseData.status)
         if (responseData) return responseData.status == '200'
       } catch (error) {
-        return error
+        alert('Usuario ya existe y/o Error')
+        
       }
     },
   },
