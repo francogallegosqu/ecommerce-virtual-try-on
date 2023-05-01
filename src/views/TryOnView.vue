@@ -35,6 +35,7 @@ export default {
         console.log('updatre', this.idUpdate)
         this.idUpdate +=1
         this.uploading = false
+        alert('Foto subida exitosamente')
       }
       
     }
@@ -65,7 +66,8 @@ export default {
       </div>
       
       <div class="imgContent bg-white p-4">
-        <img v-if="getTryout != null && uploading == false" :src="getTryout?.data" alt="">
+        <!-- <img v-if="getTryout != null && uploading == false" :src="getTryout?.data" alt=""> -->
+        <ImgVue v-if="getTryout != null && uploading == false" :key="idUpdate" :srcImg="getTryout?.data"></ImgVue>
         <ImgVue v-if="getTryout == null && uploading == false" :key="idUpdate" :srcImg="getImg?.url" ></ImgVue>
         <div v-if="uploading" class="svgAnimate">
           <button type="button" class="buttonProcess ..." disabled>

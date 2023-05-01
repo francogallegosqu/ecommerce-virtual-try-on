@@ -41,6 +41,7 @@ export default {
     },
     async goToTryOn() {
       await this.addFavCloth()
+      alert('Prenda guardada para probar')
       this.$router.push({ path: '/tryon' })
     }
   }
