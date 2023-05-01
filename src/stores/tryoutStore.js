@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import Api from '../api'
 import axios from 'axios'
 export const tryoutStore = defineStore('tryoutStore', {
-    state: () => ({ data:{} }),
+    state: () => ({ data:null }),
   getters: {
     getTryout: (state) => state.data,
   },

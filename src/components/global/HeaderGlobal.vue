@@ -46,7 +46,15 @@ export default {
 .header {
     display: flex;
     width: 100%;
-    height: 140px;
+    min-height: 140px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+@media (max-width:768px ) {
+    .header {
+        flex-direction: column;
+    }
 }
 .logo {
     display: flex;
@@ -65,9 +73,15 @@ export default {
     margin-left: 3rem;
     /* line-height: 71px; */
     /* identical to box height */
+    
 
 
 color: #683C11;
+}
+@media (max-width:768px ) {
+    .title {
+        display: none !important;
+    }
 }
 .item-header {
   flex-basis:50%;
@@ -78,6 +92,12 @@ color: #683C11;
     justify-content: center;
     align-items: center;
     background-color: #E4E3DF;
+    flex-wrap: wrap;
+}
+@media (max-width:768px ) {
+    .navigation {
+        flex-direction: column;
+    }
 }
 a {
     font-weight: 400;

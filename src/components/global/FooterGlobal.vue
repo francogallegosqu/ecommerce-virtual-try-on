@@ -42,7 +42,7 @@
 
 <style scoped>
 .footer {
-    margin-top: 30px;
+    margin-top: 50px;
     display: flex;
     color: #7B552F;
     height: 260px;
@@ -53,8 +53,9 @@
     font-weight: 400;
     font-size: 20px;
     line-height: 25px;
-
-letter-spacing: 0.1em;
+    letter-spacing: 0.1em;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .item-footer {
