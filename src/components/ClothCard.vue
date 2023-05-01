@@ -29,8 +29,8 @@ export default {
   },
   methods: {
     getUrlImg() {
-      console.log(`${baseURL}${this.cloth.img.url}`);
-      return this.filter == true ? `${baseURL}${this.cloth.img.data.attributes.url}` :`${baseURL}${this.cloth.img.url}`;
+      console.log(`${this.cloth.img.url}`);
+      return this.filter == true ? `${this.cloth.img.data.attributes.url}` :`${this.cloth.img.url}`;
     },
     async addFavCloth() {
       if (this.getLog) {

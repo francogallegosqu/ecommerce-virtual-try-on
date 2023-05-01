@@ -1,9 +1,12 @@
 <script>
-import { mapState } from 'pinia';
+import { mapActions, mapState } from 'pinia';
 import { baseURL } from '../api';
 import { logStore } from '../stores/logStore';
 import { dataStore } from '../stores/dataStore'
 import { useFavClothStore } from '../stores/favClothStore';
+import { tryoutStore } from '../stores/tryoutStore';
+import { imgStore } from '../stores/imgStore';
+
 export default {
   data() {
     return {
@@ -19,11 +22,12 @@ export default {
   computed: {
     ...mapState(dataStore, ['getUser']),
     ...mapState(logStore, ['getLog']),
+    ...mapState(imgStore, ['getImg'])
   },
   methods: {
-    getUrlImg() {
-      console.log(`${baseURL}${this.cloth.img.url}`);
-      return `${baseURL}${this.cloth.img.url}`;
+    getClothImg() {
+      console.log(`${this.cloth.img.url}`);
+      return `${this.cloth.img.url}`;
     },
     async removeFavCloth() {
       if (this.getLog) {
@@ -31,7 +35,8 @@ export default {
       } else {
         this.$router.push({ path: '/login' })
       }
-    }
+    },
+    ...mapActions(tryoutStore, ['sendTryout'])
   }
 }
 </script>
@@ -39,7 +44,7 @@ export default {
 <template>
   <div class="flex flex-row gap-3">
     <div class="w-2/5 bg-gray-100 items-center">
-      <img :src="getUrlImg()" alt="Producto" width="150" height="150" class="">
+      <img :src="getClothImg()" alt="Producto" width="150" height="150" class="">
     </div>
 
     <div class="border-l border-black h-auto"></div>
@@ -50,7 +55,8 @@ export default {
       <p class="text-gray-700 text-lg">{{ `S/. ${cloth.price}` }}</p>
       <div class="flex gap-x-0 justify-between">
         <button class="w-3/4 bg-[#FEE7D6] hover:bg-white text-sm md:text-base border hover:border-1 hover:border-[#FEE7D6] rounded-xl p-1 text-black"
-        href="/tryon">Probarse
+          @click="sendTryout(getClothImg(), getImg.url)"
+        >Probarse
       </button>
       <button class="w-1/4 bg-red-400 hover:bg-white text-sm md:text-base border hover:border-1 hover:border-red-400 rounded-xl text-black"
       @click="removeFavCloth()">

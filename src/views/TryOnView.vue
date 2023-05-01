@@ -17,6 +17,7 @@ export default {
   computed: {
     ...mapState(imgStore, ['getImg']),
     ...mapState(dataStore, ['getUser']),
+    ...mapState(tryoutStore, ['getTryout'])
   },
   methods:{
     ...mapActions(tryoutStore, ['sendTryout','uploadImg']),
@@ -59,8 +60,9 @@ export default {
       </div>
       <div class="w-3/4 bg-white p-4">
         <!-- Contenido principal aquí -->
-        <!-- <p>{{getImg?.url}}</p> -->
-        <img :key="idUpdate" v-if="getImg" :src="getImg?.url" alt="">
+        <!-- <p>{{getTryout}}</p> -->
+        <img :src="getTryout?.data" alt="">
+        <!-- <img :key="idUpdate" v-if="getImg" :src="getImg?.url" alt=""> -->
       </div>
     </div>    
   </main>

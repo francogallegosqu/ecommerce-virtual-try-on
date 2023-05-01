@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import Api from '../api'
+import axios from 'axios'
 export const tryoutStore = defineStore('tryoutStore', {
     state: () => ({ data:{} }),
   getters: {
@@ -11,7 +12,7 @@ export const tryoutStore = defineStore('tryoutStore', {
         if(!imgCloth || !imgUser) {
             alert('No hay imagen de usuario y/o prenda para probar ')
         }
-        const url = ''
+        const url = 'https://a472-34-83-79-141.ngrok-free.app'
         const data = {
             "cloth": {
               "id": 1,
@@ -24,7 +25,15 @@ export const tryoutStore = defineStore('tryoutStore', {
             "url":imgUser
             }
           }
-        const responseData = await Api.post(`${url}/tryon`, data);
+        
+        // const responseData = await Api.post(`${url}/tryon`, data, );
+        const responseData = await axios.post(`${url}/tryon`, data, {
+          headers: {
+            // 'Content-Type': 'application/json',
+            // 'Access-Control-Allow-Origin': '*',
+            "ngrok-skip-browser-warning":"any",
+          }
+        })
         console.log(responseData);
         if (responseData) {
           this.data = responseData.data;

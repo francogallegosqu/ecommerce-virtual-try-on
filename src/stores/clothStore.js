@@ -12,7 +12,7 @@ export const clothStore = defineStore('clothStore', {
         console.log(responseData);
         if (responseData) {
           this.clothes = responseData.data;
-          print('imprimiendo en clothStore', this.clothes)
+          console.log('imprimiendo en clothStore', this.clothes);
         } else {
           console.log('hubo un error al cargar los datos');
         }
