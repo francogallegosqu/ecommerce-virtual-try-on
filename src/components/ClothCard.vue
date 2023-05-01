@@ -34,7 +34,7 @@ export default {
     },
     async addFavCloth() {
       if (this.getLog) {
-        await this.favClothStore.addFavCloth(this.getUser, this.filter == this.id? '' : this.cloth.id);
+        await this.favClothStore.addFavCloth(this.getUser, this.filter ? this.id : this.cloth.id);
       } else {
         this.$router.push({ path: '/login' })
       }

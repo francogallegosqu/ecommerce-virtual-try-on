@@ -68,7 +68,7 @@ export const useFavClothStore = defineStore('favClothStore', {
 
     async addFavCloth(user, cloth_id) {
       try {
-        // console.log(this.favCloths, cloth_id);
+        console.log(this.favCloths, cloth_id);
         const arr = this.favCloths.find(cloth => cloth.id === cloth_id);
         // console.log('arr:',arr);
         if (!this.favCloths.find(cloth => cloth.id === cloth_id)) {

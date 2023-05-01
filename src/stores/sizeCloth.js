@@ -14,6 +14,7 @@ export const sizeCloth = defineStore('sizeCloth', {
         const responseData = await Api.get(url_query);
         if (responseData) {
           this.sizeclothes = responseData.data.data;
+          console.log('imprimiendo en sizeCloth.js', this.sizeclothes);
         } else {
           console.log('hubo un error al cargar los datos');
         }
