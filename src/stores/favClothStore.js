@@ -20,7 +20,7 @@ export const useFavClothStore = defineStore('favClothStore', {
 
           const responseData = await Api.get(url_query, config);
 
-          console.log(responseData);
+          console.log('cloth',responseData);
           if (responseData) {
             this.favCloths = responseData.data.cloths;
             console.log(this.favCloths);
