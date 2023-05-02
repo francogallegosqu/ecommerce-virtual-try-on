@@ -14,27 +14,26 @@ export default {
     return {
       fileImg: null,
       idUpdate: 0,
-      uploading: false,
     }
   },
   computed: {
     ...mapState(imgStore, ['getImg']),
     ...mapState(dataStore, ['getUser']),
-    ...mapState(tryoutStore, ['getTryout'])
+    ...mapState(tryoutStore, ['getTryout','getTUploading'])
   },
   methods:{
-    ...mapActions(tryoutStore, ['sendTryout','uploadImg']),
+    ...mapActions(tryoutStore, ['sendTryout','uploadImg','updateUploading']),
     ...mapActions(imgStore, ['updateDataImg']),
     async sendUploadImg(){
       if(this.fileImg == null){
         alert('Porfavor elige un archivo primero')
       } else {
-        this.uploading = true
+        this.updateUploading(true)
         await this.uploadImg(this.fileImg, this.getUser?.user?.id)
         await this.updateDataImg()
         console.log('updatre', this.idUpdate)
         this.idUpdate +=1
-        this.uploading = false
+        this.updateUploading(false)
         alert('Foto subida exitosamente')
       }
       
@@ -67,9 +66,9 @@ export default {
       
       <div class="imgContent bg-white p-4">
         <!-- <img v-if="getTryout != null && uploading == false" :src="getTryout?.data" alt=""> -->
-        <ImgVue v-if="getTryout != null && uploading == false" :key="idUpdate" :srcImg="getTryout?.data"></ImgVue>
-        <ImgVue v-if="getTryout == null && uploading == false" :key="idUpdate" :srcImg="getImg?.url" ></ImgVue>
-        <div v-if="uploading" class="svgAnimate">
+        <ImgVue v-if="getTryout != null && getTUploading == false" :key="idUpdate" :srcImg="getTryout?.data"></ImgVue>
+        <ImgVue v-if="getTryout == null && getTUploading == false" :key="idUpdate" :srcImg="getImg?.url" ></ImgVue>
+        <div v-if="getTUploading" class="svgAnimate">
           <button type="button" class="buttonProcess ..." disabled>
             <svg class="animate-spin h-5 w-5 mr-3 ..." viewBox="0 0 24 24">
             </svg>

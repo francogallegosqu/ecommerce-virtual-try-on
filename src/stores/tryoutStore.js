@@ -2,10 +2,12 @@ import { defineStore } from 'pinia'
 import Api from '../api'
 import axios from 'axios'
 export const tryoutStore = defineStore('tryoutStore', {
-    state: () => ({ data:null }),
+    state: () => ({ data:null, uploading:false }),
   getters: {
     getTryout: (state) => state.data,
+    getTUploading: (state) => state.uploading,
   },
+  
   actions: {
     async sendTryout(imgCloth, imgUser) {
       try {
@@ -71,6 +73,10 @@ export const tryoutStore = defineStore('tryoutStore', {
         }catch(error){
             console.log(error)
         }
+    },
+
+    updateUploading(status){
+        this.uploading = status
     }
   },
 })
