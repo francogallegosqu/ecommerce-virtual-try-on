@@ -36,7 +36,12 @@ export default {
         this.$router.push({ path: '/login' })
       }
     },
-    ...mapActions(tryoutStore, ['sendTryout'])
+    ...mapActions(tryoutStore, ['sendTryout','updateUploading']),
+    async sendTryoutTest(imgCloth, imgUser){
+      this.updateUploading(true)
+      await this.sendTryout(imgCloth, imgUser)
+      this.updateUploading(false)
+    }
   }
 }
 </script>

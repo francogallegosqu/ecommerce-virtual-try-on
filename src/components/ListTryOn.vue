@@ -4,7 +4,6 @@ import { mapState } from 'pinia';
 import { dataStore } from '../stores/dataStore'
 import { useFavClothStore } from '../stores/favClothStore';
 import ClothListCard from './ClothListCard.vue';
-
 export default {
   data() {
     return {
