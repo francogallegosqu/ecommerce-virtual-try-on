@@ -35,6 +35,7 @@ export default {
     async addFavCloth() {
       if (this.getLog) {
         await this.favClothStore.addFavCloth(this.getUser, this.filter ? this.id : this.cloth.id);
+        alert('Prenda guardada para probar')
       } else {
         this.$router.push({ path: '/login' })
       }
@@ -67,6 +68,10 @@ export default {
       <div class="px-2 py-1">
         <!-- Titulo -->
         <div class="text-sm md:text-base font-bold pr-2">{{ cloth.cloth_name }}</div>
+        <!-- Descripcion -->
+        <p class="pb-1 md:pb-2 text-xs md:text-sm text-gray-700">{{ cloth.descripcion }}</p>
+        <!-- Talla -->
+        <p class="pb-1 md:pb-2 text-xs md:text-sm text-gray-500">{{ `Talla: ${cloth.size}` }}</p>
         <!-- Precio -->
         <p class="pb-1 md:pb-2 text-xs md:text-sm text-gray-500">{{ `S/. ${cloth.price}` }}</p>
         <!-- Boton probarse -->
