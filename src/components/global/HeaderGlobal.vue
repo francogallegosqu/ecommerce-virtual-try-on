@@ -20,6 +20,7 @@
 import { mapState, mapActions } from 'pinia'
 import { dataStore } from '../../stores/dataStore'
 import { logStore } from '../../stores/logStore'
+import { clothStore } from '../../stores/clothStore';
 export default {
     computed: {
     ...mapState(logStore, ['getLog']),
@@ -27,12 +28,16 @@ export default {
 
   },
   methods: {
-    ...mapActions(dataStore, ['logout']),
+    ...mapActions(dataStore, ['logout', 'updateData']),
     ...mapActions(logStore, ['updateLogin']),
-    logoutUser() {
+    ...mapActions(clothStore, ['listClothes']),
+    async logoutUser() {
         this.logout()
         this.updateLogin(false)
-        this.$router.push({path: '/login'})
+        this.updateData()
+        console.log(this.getUser);
+        await this.listClothes(this.getUser);
+        this.$router.push({path: '/'})
     }
   },
   mounted(){

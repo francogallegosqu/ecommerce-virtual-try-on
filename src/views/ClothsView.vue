@@ -45,7 +45,7 @@ export default {
       <div class="form-content">
         <label for="sel">Categoria:</label>
         <select class="sel" v-model="select" @change="filterQuery()">
-            <option value="all" selected>Todos</option>
+            <option value="all">Todos</option>
             <option value="moderno">moderno</option>
             <option value="clasico">clasico</option>
         </select>
