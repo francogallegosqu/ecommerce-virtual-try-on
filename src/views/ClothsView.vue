@@ -57,7 +57,7 @@ export default {
         <ClothCard :cloth="cloth" />
       </div>
     </div>
-    <div v-if="select == 'moderno' || select == 'clasico'" class="mx-5 h-full py-5 justify-center items-center grid grid-cols-5 gap-5">
+    <div v-if="select == 'moderno' || select == 'clasico'" class="mx-5 h-full py-5 justify-center items-center grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
       <div v-for="cloth in getlist" :key="cloth.id">
         <ClothCard :cloth="cloth?.attributes" :filter="true" :id="cloth.id" />
       </div>
@@ -66,12 +66,19 @@ export default {
 </template>
 
 <style>
+main {
+  width: 100% !important;
+}
 .sel {
   color:#7B552F
 }
 .buscador {
   width: 100%;
   text-align: end;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: end;
+  /* padding: 10px; */
 }
 
 
@@ -80,7 +87,7 @@ select, select option {
   border: 2px solid #7B552F;
   border-radius: 10px;
   height: 50px;
-  width: 400px;
+  max-width: 300px;
   color: #7B552F;
 }
 </style>

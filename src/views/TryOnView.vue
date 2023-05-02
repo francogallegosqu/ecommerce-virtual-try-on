@@ -4,14 +4,17 @@ import { mapState, mapActions } from 'pinia'
 import { imgStore } from '../stores/imgStore'
 import { dataStore } from '../stores/dataStore'
 import {tryoutStore} from '../stores/tryoutStore'
+import ImgVue from '../components/Img.vue'
 export default {
   components: {
-    ListTryOn
+    ListTryOn,
+    ImgVue,
   },
   data(){
     return {
       fileImg: null,
       idUpdate: 0,
+      uploading: false,
     }
   },
   computed: {
@@ -22,13 +25,17 @@ export default {
   methods:{
     ...mapActions(tryoutStore, ['sendTryout','uploadImg']),
     ...mapActions(imgStore, ['updateDataImg']),
-    sendUploadImg(){
+    async sendUploadImg(){
       if(this.fileImg == null){
         alert('Porfavor elige un archivo primero')
       } else {
-        this.uploadImg(this.fileImg, this.getUser?.user?.id)
-        this.updateDataImg()
+        this.uploading = true
+        await this.uploadImg(this.fileImg, this.getUser?.user?.id)
+        await this.updateDataImg()
+        console.log('updatre', this.idUpdate)
         this.idUpdate +=1
+        this.uploading = false
+        alert('Foto subida exitosamente')
       }
       
     }
@@ -49,30 +56,42 @@ export default {
     <div class="flex flex-row justify-end">
       {{ getUser?.user?.id}}
       <div class="content-button">
-        <button class="button rounded-full ...">Probar Prenda</button>
-        <button class="button rounded-full ..." @click="sendUploadImg()">Subir Foto </button>
-        <input id="inputTag" type="file" class="form-control p-2" />
+        <button style="margin-top:5px; margin-bottom: 5px;" class="button rounded-full ..." @click="sendUploadImg()">Subir Foto </button>
+        <input style="margin-top:5px; margin-bottom: 5px;" id="inputTag" type="file" class="form-control p-2" />
       </div>
     </div>
-    <div class="flex flex-row">
-      <div class="w-1/4 bg-gray-200 p-4">
+    <div class="rowFlex flex flex-row" style="color:#683C11">
+       <div class="itemFlex p-4">
         <ListTryOn></ListTryOn>
       </div>
-      <div class="w-3/4 bg-white p-4">
-        <!-- Contenido principal aquí -->
-        <!-- <p>{{getTryout}}</p> -->
-        <img :src="getTryout?.data" alt="">
-        <!-- <img :key="idUpdate" v-if="getImg" :src="getImg?.url" alt=""> -->
+      
+      <div class="imgContent bg-white p-4">
+        <!-- <img v-if="getTryout != null && uploading == false" :src="getTryout?.data" alt=""> -->
+        <ImgVue v-if="getTryout != null && uploading == false" :key="idUpdate" :srcImg="getTryout?.data"></ImgVue>
+        <ImgVue v-if="getTryout == null && uploading == false" :key="idUpdate" :srcImg="getImg?.url" ></ImgVue>
+        <div v-if="uploading" class="svgAnimate">
+          <button type="button" class="buttonProcess ..." disabled>
+            <svg class="animate-spin h-5 w-5 mr-3 ..." viewBox="0 0 24 24">
+            </svg>
+            Cargando Imagen...
+          </button>
+        </div>
       </div>
     </div>    
   </main>
 </template>
 
 <style scoped>
+.rowFlex {
+  /* width: 100%; */
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
 .button {
   background-color: #683C11;
   padding: 15px 15px;
   margin-inline: 10px;
+  color: white;
 }
 .content-button {
   margin: 15px 4px;
@@ -84,5 +103,24 @@ input {
   border-radius: 25px;
   height: 50px;
   color: #683C11;
+}
+.imgContent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 400px;
+  width: 100%;
+}
+.svgAnimate{
+
+  border-radius: 20px;
+  padding: 10px;
+  
+}
+.buttonProcess {
+  background-color: #683C11;
+  color: white;
+  border-radius: 20px;
+  padding: 20px;
 }
 </style>
