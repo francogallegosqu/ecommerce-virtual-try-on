@@ -32,6 +32,7 @@ export default {
     logoutUser() {
         this.logout()
         this.updateLogin(false)
+        this.$router.push({path: '/login'})
     }
   },
   mounted(){

@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+
 export const dataStore = defineStore('dataStore', {
     state: () => ({ data: JSON.parse(localStorage.getItem("data")) || null }),
   getters: {
@@ -10,7 +11,8 @@ export const dataStore = defineStore('dataStore', {
     },
     logout() {
       console.log('remove')
-        localStorage.removeItem("data");
+      localStorage.removeItem("data");
+      localStorage.removeItem("img");
     },
   },
 })

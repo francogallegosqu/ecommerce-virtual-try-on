@@ -1,5 +1,5 @@
 <script>
-import { mapState } from 'pinia';
+import { mapActions, mapState } from 'pinia';
 
 import { dataStore } from '../stores/dataStore'
 import { useFavClothStore } from '../stores/favClothStore';
@@ -16,6 +16,10 @@ export default {
   },
   async mounted() {    
     await this.favClothStore.listFavCloths(this.getUser);
+    this.updateData()
+  },
+  methods: {
+    ...mapActions(dataStore, ['updateData'])
   },
   components: { ClothListCard }
 }
@@ -23,7 +27,7 @@ export default {
 
 <template>
   <h2 class="font-bold mb-4">Prendas Favoritas</h2>
-  <ul class="flex flex-col gap-y-2">
+  <ul v-if="getUser" class="flex flex-col gap-y-2">
     <li v-for="cloth in getfavClothes" :key="cloth.id" class="border-black border-2 rounded-md p-2">
       <ClothListCard :cloth="cloth"></ClothListCard>
     </li>

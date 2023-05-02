@@ -60,7 +60,7 @@ export default {
       <p class="text-gray-700 text-lg">{{ `S/. ${cloth.price}` }}</p>
       <div class="flex gap-x-0 justify-between">
         <button class="w-3/4 bg-[#FEE7D6] hover:bg-white text-sm md:text-base border hover:border-1 hover:border-[#FEE7D6] rounded-xl p-1 text-black"
-          @click="sendTryout(getClothImg(), getImg.url)"
+          @click="sendTryoutTest(getClothImg(), getImg.url)"
         >Probarse
       </button>
       <button class="w-1/4 bg-red-400 hover:bg-white text-sm md:text-base border hover:border-1 hover:border-red-400 rounded-xl text-black"

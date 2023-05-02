@@ -39,7 +39,11 @@ export default {
       
     }
   },
+  created() {
+    this.idUpdate +=1
+  },
   mounted() {
+    this.updateDataImg()
     let input = document.getElementById('inputTag')
     input.addEventListener('change', () => {
       let file = document.querySelector('input[type=file]').files[0]
@@ -53,7 +57,6 @@ export default {
 <template>
   <main>
     <div class="flex flex-row justify-end">
-      {{ getUser?.user?.id}}
       <div class="content-button">
         <button style="margin-top:5px; margin-bottom: 5px;" class="button rounded-full ..." @click="sendUploadImg()">Subir Foto </button>
         <input style="margin-top:5px; margin-bottom: 5px;" id="inputTag" type="file" class="form-control p-2" />

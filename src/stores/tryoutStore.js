@@ -14,7 +14,7 @@ export const tryoutStore = defineStore('tryoutStore', {
         if(!imgCloth || !imgUser) {
             alert('No hay imagen de usuario y/o prenda para probar ')
         }
-        const url = 'https://bc1b-34-147-12-179.ngrok-free.app'
+        const url = 'https://2b1f-34-147-12-179.ngrok-free.app'
         const data = {
             "cloth": {
               "id": 1,
