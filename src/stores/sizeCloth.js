@@ -6,12 +6,16 @@ export const sizeCloth = defineStore('sizeCloth', {
     getlist: (state) => state.sizeclothes,
   },
   actions: {
-    async listFilter(query) {
+    async listFilter(query, user) {
       try {
-        const url_query = `/api/cloths?filters[categoria][$eq]=${query}&populate[img]=*`;
+        let url_query = `/api/cloths?filters[categoria][$eq]=${query}&populate[img]=*`;
+        if (user) {
+          url_query = `/api/cloths?filters[categoria][$eq]=${query}&filters[size][$eq]=${user?.user?.size}&populate[img]=*`;
+        }
         // const url_query = `/api/cloths`;
 
         const responseData = await Api.get(url_query);
+        console.log(responseData);
         if (responseData) {
           this.sizeclothes = responseData.data.data;
           console.log('imprimiendo en sizeCloth.js', this.sizeclothes);

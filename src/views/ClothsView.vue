@@ -11,7 +11,7 @@ export default {
     return {
       clothStore: clothStore(),
       favClothStore: useFavClothStore(),
-      select: '',
+      select: 'all',
       list:[]
     }
   },
@@ -22,14 +22,14 @@ export default {
     ...mapState(sizeCloth, ['getlist']),
   },
   async mounted() {
-    await this.clothStore.listClothes();
+    await this.clothStore.listClothes(this.getUser);
     await this.favClothStore.listFavCloths(this.getUser);
     
   },
   methods: {
     ...mapActions(sizeCloth, ['listFilter']),
     async filterQuery(){
-      this.list = await this.listFilter(this.select)
+      this.list = await this.listFilter(this.select, this.getUser)
     }
   },
   components: {
@@ -43,15 +43,15 @@ export default {
   <main>
     <div class="buscador">
       <div class="form-content">
+        <label for="sel">Categoria:</label>
         <select class="sel" v-model="select" @change="filterQuery()">
-            <option value="" disabled selected >Busca tu Categoria</option>
-            <option value="all">all</option>
+            <option value="all" selected>Todos</option>
             <option value="moderno">moderno</option>
             <option value="clasico">clasico</option>
         </select>
         </div>
     </div>
-    <div v-if="getlist.length == 0 || select == 'all'" class="mx-5 h-full py-5 justify-center items-center grid grid-cols-5 gap-5">
+    <div v-if="select == 'all'" class="mx-5 h-full py-5 justify-center items-center grid grid-cols-5 gap-5">
       
       <div v-for="cloth in clothStore.getClothes" :key="cloth.id">
         <ClothCard :cloth="cloth" />
