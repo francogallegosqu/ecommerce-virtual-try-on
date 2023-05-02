@@ -25,6 +25,7 @@
           <input type="password" class="form-control p-2" required v-model="form.password" />
         </div>
         <div class="form-content">
+          <label for="countries">Ingresa tu Talla</label>
           <select id="countries" class="form-control" required v-model="form.select">
           <option selected >Elige tu talla</option>
           <option value="S">S</option>

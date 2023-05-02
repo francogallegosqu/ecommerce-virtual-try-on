@@ -19,7 +19,7 @@ export default {
   computed: {
     ...mapState(imgStore, ['getImg']),
     ...mapState(dataStore, ['getUser']),
-    ...mapState(tryoutStore, ['getTryout','getTUploading'])
+    ...mapState(tryoutStore, ['getTryout','getTUploading', 'updateTryOn'])
   },
   methods:{
     ...mapActions(tryoutStore, ['sendTryout','uploadImg','updateUploading']),
@@ -44,6 +44,7 @@ export default {
   },
   mounted() {
     this.updateDataImg()
+    this.updateTryOn()
     let input = document.getElementById('inputTag')
     input.addEventListener('change', () => {
       let file = document.querySelector('input[type=file]').files[0]

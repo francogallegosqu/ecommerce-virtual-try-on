@@ -9,6 +9,10 @@ export const tryoutStore = defineStore('tryoutStore', {
   },
   
   actions: {
+    updateTryOn()
+    {
+      this.data = null;
+    },
     async sendTryout(imgCloth, imgUser) {
       try {
         if(!imgCloth || !imgUser) {
