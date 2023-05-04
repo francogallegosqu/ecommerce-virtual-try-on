@@ -27,7 +27,7 @@
         <div class="form-content">
           <label for="countries">Ingresa tu Talla</label>
           <select id="countries" class="form-control" required v-model="form.select">
-          <option selected >Elige tu talla</option>
+          <option value='' selected >Elige tu talla</option>
           <option value="S">S</option>
           <option value="M">M</option>
           <option value="L">L</option>

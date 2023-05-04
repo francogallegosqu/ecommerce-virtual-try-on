@@ -77,7 +77,7 @@ main {
   text-align: end;
   display: flex;
   flex-wrap: wrap;
-  justify-content: end;
+  justify-content: flex-end;
   /* padding: 10px; */
 }
 

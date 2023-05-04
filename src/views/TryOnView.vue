@@ -22,7 +22,7 @@ export default {
     ...mapState(tryoutStore, ['getTryout','getTUploading', 'updateTryOn'])
   },
   methods:{
-    ...mapActions(tryoutStore, ['sendTryout','uploadImg','updateUploading']),
+    ...mapActions(tryoutStore, ['sendTryout','uploadImg','updateUploading', 'uploadImgToRestApiModel']),
     ...mapActions(imgStore, ['updateDataImg']),
     async sendUploadImg(){
       if(this.fileImg == null){
@@ -31,10 +31,15 @@ export default {
         this.updateUploading(true)
         await this.uploadImg(this.fileImg, this.getUser?.user?.id)
         await this.updateDataImg()
+        this.updateTryOn()
+        
         console.log('updatre', this.idUpdate)
         this.idUpdate +=1
         this.updateUploading(false)
+        
         alert('Foto subida exitosamente')
+        
+        await this.uploadImgToRestApiModel(this.getUser?.user?.id)
       }
       
     }

@@ -39,7 +39,7 @@ export default {
     ...mapActions(tryoutStore, ['sendTryout','updateUploading']),
     async sendTryoutTest(imgCloth, imgUser){
       this.updateUploading(true)
-      await this.sendTryout(imgCloth, imgUser)
+      await this.sendTryout(imgCloth, imgUser, this.getUser?.user?.id)
       this.updateUploading(false)
     }
   }
