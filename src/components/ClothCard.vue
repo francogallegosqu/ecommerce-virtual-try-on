@@ -50,9 +50,8 @@ export default {
 </script>
 
 <template>
-  <div
-    class="relative pl-1 flex-1 justify-center rounded-xl hover:scale-[1.01] duration-500 transform transition cursor-pointer">
-    <div class="pb-2 bg-white rounded-xl shadow-xl z-10">
+  <div  class="relative pl-1 flex-1 justify-center rounded-xl hover:scale-[1.01] duration-500 transform transition cursor-pointer">
+    <div style="min-height: 533px;"  class="pb-2 bg-white rounded-xl shadow-xl z-10 flex flex-col justify-around">
       <!-- Boton "Favoritos" -->
       <a
         class="absolute top-0 right-0 mt-3 mr-1 z-30 hover:text-gray-100 hover:bg-stone-800 w-8 h-8 bg-white text-black rounded-full text-center"
@@ -62,7 +61,7 @@ export default {
       </a>
       
       <div class="relative px-2 flex justify-center">
-        <img :src="getUrlImg()" class="object-cover w-full h-full rounded-t-xl" alt="">
+        <img  :src="getUrlImg()" class="object-cover w-full h-full rounded-t-xl" alt="">
       </div>
 
       <div class="px-2 py-1">

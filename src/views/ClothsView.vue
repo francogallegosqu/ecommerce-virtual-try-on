@@ -43,8 +43,8 @@ export default {
   <main>
     <div class="buscador">
       <div class="form-content">
-        <label for="sel">Categoria:</label>
-        <select class="sel" v-model="select" @change="filterQuery()">
+        <label for="sel" style="color: black; margin-right: 10px;">Categoria:</label>
+        <select class="sel" v-model="select" @change="filterQuery()" style="min-width: 300px;">
             <option value="all">Todos</option>
             <option value="moderno">moderno</option>
             <option value="clasico">clasico</option>
