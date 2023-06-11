@@ -35,11 +35,14 @@ export default {
         
         console.log('updatre', this.idUpdate)
         this.idUpdate +=1
+        
         this.updateUploading(false)
+        alert('Foto subida exitosamente');
         
-        alert('Foto subida exitosamente')
-        
-        await this.uploadImgToRestApiModel(this.getUser?.user?.id)
+        this.uploadImgToRestApiModel(this.getUser?.user?.id)
+        .then(response => {
+
+        })
       }
       
     }

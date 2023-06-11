@@ -45,7 +45,7 @@ export const tryoutStore = defineStore('tryoutStore', {
         if (responseData) {
           this.data = responseData.data;
           console.log('imprimiendo en tryout', this.data)
-          alert('Generación de prueba de ropa exitoso')
+          //alert('Generación de prueba de ropa exitoso')
         } else {
           console.log('hubo un error al cargar los datos');
         }

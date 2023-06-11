@@ -12,13 +12,17 @@
         ¡Bienvenido! Por favor, ingresa tus datos
       </div>
       <form class="form-insert" id="formId" enctype="multipart/form-data">
-        <div class="form-content">
+        <!-- <div class="form-content">
           <label for="dni">Ingresa tu DNI</label>
           <input type="text" class="form-control p-2" v-model="form.dni" />
-        </div>
+        </div> -->
         <div class="form-content">
           <label for="text">Ingresa tu Usuario</label>
           <input type="text" class="form-control p-2" required v-model="form.username" />
+        </div>
+        <div class="form-content">
+          <label for="email">Ingresa tu email</label>
+          <input type="email" class="form-control p-2" required v-model="form.email" />
         </div>
         <div class="form-content">
           <label for="password">Ingresa tu Contraseña</label>
@@ -32,10 +36,6 @@
           <option value="M">M</option>
           <option value="L">L</option>
         </select>
-        </div>
-        <div class="form-content">
-          <label for="email">Ingresa tu email</label>
-          <input type="email" class="form-control p-2" required v-model="form.email" />
         </div>
         <div class="form-content">
           <label for="file">Ingresa tu Foto</label>
@@ -76,6 +76,8 @@ export default {
       try{
         console.log(this.form)
         const response = await this.sendUser(this.form)
+
+        console.log(response);
         if(response){
           alert('Usuario Registrado con éxito')
           this.$router.push({ name: 'login' })
