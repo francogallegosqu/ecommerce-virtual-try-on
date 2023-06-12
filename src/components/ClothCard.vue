@@ -1,9 +1,11 @@
 <script>
-import { mapState } from 'pinia';
+import { mapActions, mapState } from 'pinia';
 import { baseURL } from '../api';
 import { logStore } from '../stores/logStore';
 import { dataStore } from '../stores/dataStore'
 import { useFavClothStore } from '../stores/favClothStore';
+import {tryoutStore} from '../stores/tryoutStore'
+
 export default {
   data() {
     return {
@@ -28,6 +30,8 @@ export default {
     ...mapState(logStore, ['getLog']),
   },
   methods: {
+    ...mapActions(tryoutStore, ['get_descripcion_talla']),
+    
     getUrlImg() {
       console.log(`${this.cloth.img.url}`);
       return this.filter == true ? `${this.cloth.img.data.attributes.url}` :`${this.cloth.img.url}`;
@@ -71,6 +75,8 @@ export default {
         <p class="pb-1 md:pb-2 text-xs md:text-sm text-gray-700">{{ cloth.descripcion }}</p>
         <!-- Talla -->
         <p class="pb-1 md:pb-2 text-xs md:text-sm text-gray-500">{{ `Talla: ${cloth.size}` }}</p>
+        <!-- Descripcion Talla -->
+        <p class="pb-1 md:pb-2 text-xs md:text-sm text-gray-500">{{ `${get_descripcion_talla(cloth.size)}` }}</p>
         <!-- Precio -->
         <p class="pb-1 md:pb-2 text-xs md:text-sm text-gray-500">{{ `S/. ${cloth.price}` }}</p>
         <!-- Boton probarse -->

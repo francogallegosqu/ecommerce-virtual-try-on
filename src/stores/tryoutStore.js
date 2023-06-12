@@ -1,6 +1,13 @@
 import { defineStore } from 'pinia'
 import Api from '../api'
 import RestApiModel from '../rest-api-model'
+
+const descripcion_talla = {
+  'S': 'PECHO (CM): 95 / CINTURA (CM): 83 / CADERA (CM): 98',
+  'M': 'PECHO (CM): 101 / CINTURA (CM): 89 / CADERA (CM): 104',
+  'L': 'PECHO (CM): 107 / CINTURA (CM): 95 / CADERA (CM): 110',
+}
+
 export const tryoutStore = defineStore('tryoutStore', {
     state: () => ({ data:null, uploading:false, file_img_url: null }),
   getters: {
@@ -13,6 +20,11 @@ export const tryoutStore = defineStore('tryoutStore', {
     {
       this.data = null;
     },
+
+    get_descripcion_talla(talla) {
+      return descripcion_talla[talla]
+    },
+
     async sendTryout(imgCloth, imgUser, user_id) {
       try {
         if(!imgCloth || !imgUser) {

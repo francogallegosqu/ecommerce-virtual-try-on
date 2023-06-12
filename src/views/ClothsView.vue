@@ -51,7 +51,7 @@ export default {
         </select>
         </div>
     </div>
-    <div v-if="select == 'all'" class="mx-5 h-full py-5 justify-center items-center grid grid-cols-5 gap-5">
+    <div v-if="select == 'all'" class="mx-5 h-full py-5 justify-center items-center grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
       
       <div v-for="cloth in clothStore.getClothes" :key="cloth.id">
         <ClothCard :cloth="cloth" />
